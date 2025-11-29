@@ -1,0 +1,24 @@
+rootProject.name = 'ecommerce-platform'
+
+// Microservices
+include 'product-service'
+include 'order-service'
+include 'inventory-service'
+include 'api-gateway'
+include 'discovery-server'
+
+// Enable build cache for faster builds
+buildCache {
+    local {
+        enabled = true
+        directory = file("${rootDir}/.gradle/build-cache")
+    }
+}
+
+// Plugin management
+pluginManagement {
+    repositories {
+        gradlew.gradlePluginPortal()
+        mavenCentral()
+    }
+}

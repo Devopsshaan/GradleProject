@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+
+description = 'Eureka Discovery Server'
+
+dependencies {
+    // Eureka Server
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
+    
+    // Actuator
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:2023.0.0'
+    }
+}
+
+bootJar {
+    archiveFileName = 'discovery-server.jar'
+}
+
+jib {
+    to {
+        image = "ecommerce/discovery-server"
+    }
+}

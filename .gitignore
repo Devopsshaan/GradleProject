@@ -1,0 +1,64 @@
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+.vscode/
+*.swp
+*.swo
+*.sublime-*
+out/
+
+# Compiled class files
+*.class
+
+# Log files
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Package files
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Environment files
+.env
+.env.local
+*.env
+
+# Secrets
+secrets/
+*-secret.yaml
+
+# Node modules (if any)
+node_modules/
+
+# Test output
+test-output/
+
+# Coverage reports
+coverage/
+*.lcov
+jacoco.exec
+
+# Docker
+.docker/
+
+# Kubernetes
+*.kubeconfig
+kubeconfig
