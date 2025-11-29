@@ -1,3 +1,11 @@
+// Plugin management MUST be first in settings.gradle
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
 rootProject.name = 'ecommerce-platform'
 
 // Microservices
@@ -12,13 +20,5 @@ buildCache {
     local {
         enabled = true
         directory = file("${rootDir}/.gradle/build-cache")
-    }
-}
-
-// Plugin management
-pluginManagement {
-    repositories {
-        gradlew.gradlePluginPortal()
-        mavenCentral()
     }
 }

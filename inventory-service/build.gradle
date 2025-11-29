@@ -1,48 +1,52 @@
 plugins {
     id 'java'
+    id 'org.springframework.boot' version '3.2.0'
+    id 'io.spring.dependency-management' version '1.1.4'
 }
 
 description = 'Inventory Management Microservice'
 
+ext {
+    springCloudVersion = '2023.0.0'
+}
+
 dependencies {
-    // Spring Data JPA
+    // Spring Boot
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     
     // Database
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'org.postgresql:postgresql'
     
-    // Redis for distributed locking
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-    implementation 'org.redisson:redisson-spring-boot-starter:3.24.3'
-    
     // Kafka
     implementation 'org.springframework.kafka:spring-kafka'
     
-    // Service Discovery
+    // Spring Cloud
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
     
-    // OpenAPI
+    // Metrics
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+    
+    // OpenAPI Documentation
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
     
+    // Logging
+    implementation 'net.logstash.logback:logstash-logback-encoder:7.4'
+    
     // Testing
-    testImplementation 'org.testcontainers:junit-jupiter'
-    testImplementation 'org.testcontainers:postgresql'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 dependencyManagement {
     imports {
-        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:2023.0.0'
-        mavenBom 'org.testcontainers:testcontainers-bom:1.19.3'
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
     }
 }
 
 bootJar {
     archiveFileName = 'inventory-service.jar'
-}
-
-jib {
-    to {
-        image = "ecommerce/inventory-service"
-    }
 }
